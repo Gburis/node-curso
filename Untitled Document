@@ -1,0 +1,71 @@
+NODE
+
+============================
+require
+
+funço que permite importar modulos e arquivos
+
+===========================
+
+Criar sever 
+exemplo
+
+var http = require('http');
+
+var server = http.createServer(funcrion(req, res){
+	res.end('exemplo');
+);
+
+server.listen(3000);
+
+============================
+pegar valor url 
+
+.url
+
+===========================
+iniciar npm
+
+npm init
+
+next next next 
+
+=======================================
+Express
+
+npm install express --save
+
+iniciando servidor com express
+
+var express = require('express');
+
+var app = express();
+
+app.listen(3000, function(){
+	console.log('servidor com express');
+});
+
+
+traçando rota
+app.get('/', function(req, res){
+	app.send('nossa pagina exemplo');
+});
+
+=========================================
+EJS
+
+npm install ejs --save
+
+setando modulo de origem e formato do arquivo no motor de views
+app.set('view engine' ,'ejs');
+
+modulo sender é subistituido pelo render
+
+=============================================
+exporta modulos criados
+
+var msg = 'exemple';
+
+module.exports = msg;
+
+==========================================
