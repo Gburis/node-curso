@@ -51,6 +51,10 @@ app.get('/', function(req, res){
 	app.send('nossa pagina exemplo');
 });
 
+mapeando com express
+
+
+
 =========================================
 EJS
 
@@ -144,3 +148,9 @@ realizando return dos erros
 if(!errors.isEmpty()){
     return res.render('admin/form_add_noticia', { validacao: errors.array(), noticia: noticia });
   }
+
+==========================================================================
+
+request query
+
+exemplo req.query
