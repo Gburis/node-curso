@@ -1,26 +1,19 @@
 const { check, validationResult } = require('express-validator');
-module.exports = function(app){
-    app.get('/new-notice', function(req, res){
-        res.render('admin/form_add_noticia'); 
+
+module.exports = function(application){
+    application.get('/new-notice', function(req, res){
+        application.app.controllers.admin.add_notice(application, req, res);        
     });
 
-    app.post('/new-notice/save', [
-        check('titulo').not().isEmpty().withMessage('titulo esta vazio')
-        
+    application.post('/new-notice/save', [
+        check('titulo').not().isEmpty().withMessage('titulo esta vazio'),
+        check('resumo').not().isEmpty().withMessage('resumo esta vazio'),
+        check('autor').not().isEmpty().withMessage('autor esta vazio'),
+        check('data_noticia').not().isEmpty().withMessage('a data esta vazia'),
+        check('noticia').not().isEmpty().withMessage('não é possivel publicar uma noticia sem noticia !!!!')
+
     ], function(req, res){
-        let noticia = req.body;
-
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            res.redirect('/new-notice');
-            return false;
-        }
-
-        var connection = app.config.dbConnection();
-        var noticiasModel = new app.app.models.NoticiasDAO(connection);
-
-        noticiasModel.salvarNoticia(noticia, function(erro, result){
-            res.redirect('/notices');
-        });
+        
+        application.app.controllers.admin.save_notice (application, req, res, validationResult);        
     });
 }
