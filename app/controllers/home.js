@@ -1,3 +1,9 @@
 module.exports.view_home = function(application, req, res){
-    res.render('home/index');
+    var conn = application.config.dbConnection();
+    var noticeModel =  new application.app.models.NoticiasDAO(conn);
+
+    noticeModel.Index(function(error, result){
+        res.render('home/index',{noticia: result});    
+    });
+    
 }

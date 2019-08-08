@@ -1,6 +1,9 @@
 function NoticiasDAO(connection){
     this._connection = connection;
 }
+NoticiasDAO.prototype.Index = function(callback){
+    this._connection.query('select * from noticias order by id_noticia desc limit 5', callback);
+}
 
 NoticiasDAO.prototype.getNoticias =function(callback){
     this._connection.query('select * from noticias', callback);
